@@ -4,8 +4,19 @@ const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/config/config.json")[env];
+const express = require("express");
+const app = express();
+const contactRouter = require("./routes/contact");
 
 const db = {};
+
+app.use(express.json()); // Middleware to parse JSON
+app.use("/contact", contactRouter); // Mount the contact router
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 let sequelize;
 if (config.use_env_variable) {
