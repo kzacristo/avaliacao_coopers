@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import { createTodo } from "../services/todoService";
+import React, { useState } from 'react';
+import todoService from '../services/todoService';
 
-function Todo() {
-  const [text, setText] = useState("");
+const Todo = () => {
+  const [newTodo, setNewTodo] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      await createTodo({ text });
-      setText("");
-    } catch (error) {
-      console.error("Error creating task", error);
-    }
+    await todoService.createTodo({
+      description: newTodo,
+    });
+    setNewTodo('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Task"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <button type="submit"> Add Task </button>
-    </form>
+    <div className="todo-container">
+      <h2>Add Todo</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          required
+        />
+        <button type="submit">Add</button>
+      </form>
+    </div>
   );
-}
+};
 
 export default Todo;

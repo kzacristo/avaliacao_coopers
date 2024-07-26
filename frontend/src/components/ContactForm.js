@@ -1,55 +1,36 @@
-import React, { useState } from "react";
-import { sendContactEmail } from "../services/contactService";
+import React, { useState } from 'react';
+import contactService from '../services/contactService';
 
-function ContactForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
+const ContactForm = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      await sendContactEmail({ name, email, subject, message });
-      setName("");
-      setEmail("");
-      setSubject("");
-      setMessage("");
-      PopUp.displayMessage("success", "E-mail sent successfully");
-    } catch (error) {
-      console.error("Error sending email", error);
-    }
+    await contactService.sendContactEmail(name, email, message);
+    setName('');
+    setEmail('');
+    setMessage('');
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="E-mail"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Subject"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-      />
-      <textarea
-        placeholder="Message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
+      <div>
+        <label>Name:</label>
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+      </div>
+      <div>
+        <label>Email:</label>
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      </div>
+      <div>
+        <label>Message:</label>
+        <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+      </div>
       <button type="submit">Send</button>
     </form>
   );
-}
+};
 
 export default ContactForm;

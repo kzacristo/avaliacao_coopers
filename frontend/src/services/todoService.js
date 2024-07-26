@@ -1,30 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { geTodos } from "../services/todoService";
+import axios from 'axios';
 
-function TodoList() {
-  const [todos, setTodos] = useState([]);
+const API_URL = 'http://localhost:8080/api/todos/';
 
-  useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const response = await getTodos();
-        setTodos(response.data);
-      } catch (error) {
-        console.error("Error fetching tasks", error);
-      }
-    };
-    fetchTodos();
-  }, []);
+const getTodos = () => {
+  return axios.get(API_URL);
+};
 
-  return (
-    <ul>
-      {todos.map((todo) => (
-        <li key={todo.id}>
-          {todo.text} - {todo.completed ? "Done" : "Pending"}
-        </li>
-      ))}
-    </ul>
-  );
-}
+const createTodo = (todo) => {
+  return axios.post(API_URL, todo);
+};
 
-export default TodoList;
+export default {
+  getTodos,
+  createTodo,
+};
