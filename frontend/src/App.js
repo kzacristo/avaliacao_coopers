@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Todo from './components/Todo';
 import ContactForm from './components/ContactForm';
+import './App.css';
 
 const App = () => {
   return (
