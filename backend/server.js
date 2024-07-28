@@ -13,7 +13,7 @@ const db = {};
 app.use(express.json()); // Middleware to parse JSON
 app.use("/contact", contactRouter); // Mount the contact router
 
-const PORT = process.env.PORT || 3000;
+const PORT = 8080;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

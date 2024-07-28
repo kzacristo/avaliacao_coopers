@@ -1,7 +1,7 @@
-const db = require("../models");
-const Todo = db.Todo;
+import { Todo as _Todo } from "../models";
+const Todo = _Todo;
 
-exports.createTodo = async (req, res) => {
+export async function createTodo(req, res) {
   const { text } = req.body;
 
   try {
@@ -10,18 +10,18 @@ exports.createTodo = async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: "Error creating to-do", error });
   }
-};
+}
 
-exports.getTodos = async (req, res) => {
+export async function getTodos(req, res) {
   try {
     const todos = await Todo.findall({ where: { userId: res.userId } });
     res.status(200).send(todos);
   } catch (error) {
     res.status(500).send({ message: "Error retrieving to-do", error });
   }
-};
+}
 
-exports.updateTodo = async (req, res) => {
+export async function updateTodo(req, res) {
   const { id } = req.params;
   const { text, completed } = req.body;
 
@@ -31,9 +31,9 @@ exports.updateTodo = async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: "Error retrieving todos", error });
   }
-};
+}
 
-exports.deleteTodo = async (req, res) => {
+export async function deleteTodo(req, res) {
   const { id } = req.params;
 
   try {
@@ -45,4 +45,4 @@ exports.deleteTodo = async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: "Error deleting to-do", error });
   }
-};
+}

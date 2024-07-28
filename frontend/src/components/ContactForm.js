@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import contactService from '../services/contactService';
+import { sendContactEmail } from '../services/contactService';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -8,7 +8,7 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await contactService.sendContactEmail(name, email, message);
+    await sendContactEmail(name, email, message);
     setName('');
     setEmail('');
     setMessage('');
