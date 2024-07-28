@@ -8,7 +8,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await authService.login(username, password);
+    await login(username, password);
   };
 
   return (

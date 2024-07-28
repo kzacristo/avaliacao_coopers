@@ -22,7 +22,7 @@ const logout = () => {
   localStorage.removeItem('user');
 };
 
-const authService = {
+export {
   register,
   login,
   logout,
