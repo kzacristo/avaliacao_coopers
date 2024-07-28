@@ -1,6 +1,6 @@
 -- init.sql
 -- Create Users table
-CREATE TABLE Users (
+CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(255) NOT NULL UNIQUE,
   email VARCHAR(255) NOT NULL UNIQUE,
@@ -10,7 +10,7 @@ CREATE TABLE Users (
 );
 
 -- Create Todos table
-CREATE TABLE Todos (
+CREATE TABLE todos (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userId INT NOT NULL,
   title VARCHAR(255) NOT NULL,
@@ -18,17 +18,17 @@ CREATE TABLE Todos (
   isCompleted BOOLEAN DEFAULT FALSE,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (userId) REFERENCES Users (id) ON DELETE CASCADE
+  FOREIGN KEY (userId) REFERENCES users (id) ON DELETE CASCADE
 );
 
 -- Trigger to update updatedAt column in Users table before update
 CREATE TRIGGER before_user_update BEFORE
-UPDATE ON Users FOR EACH ROW
+UPDATE ON users FOR EACH ROW
 SET
   NEW.updatedAt = CURRENT_TIMESTAMP;
 
 -- Trigger to update updatedAt column in Todos table before update
 CREATE TRIGGER before_todo_update BEFORE
-UPDATE ON Todos FOR EACH ROW
+UPDATE ON todos FOR EACH ROW
 SET
   NEW.updatedAt = CURRENT_TIMESTAMP;
