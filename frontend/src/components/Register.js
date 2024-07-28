@@ -8,11 +8,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-<<<<<<< HEAD
-    await authService.register(username, email, password);
-=======
     await register(username, password);
->>>>>>> e2d780d7d382e5a1971a3c2307fd84d8b36f8a5f
   };
 
   return (
