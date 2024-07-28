@@ -10,6 +10,6 @@ const sendContactEmail = (name, email, message) => {
   });
 };
 
-export default {
+export {
   sendContactEmail,
 };

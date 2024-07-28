@@ -10,7 +10,7 @@ const createTodo = (todo) => {
   return axios.post(API_URL, todo);
 };
 
-export default {
+export {
   getTodos,
   createTodo,
 };
