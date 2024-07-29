@@ -12,8 +12,8 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+      <div className="auth-container">
         <h2>Login</h2>
         <div>
           <label>Username:</label>
@@ -25,8 +25,8 @@ const Login = () => {
         </div>
         <button type="submit">Login</button>
         <Link to="/register">Register</Link>
-      </form>
-    </div>
+      </div >
+    </form>
   );
 };
 

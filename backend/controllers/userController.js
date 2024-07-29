@@ -4,10 +4,10 @@ const db = require("../models");
 const User = db.User;
 
 exports.register = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ username, password: hashedPassword });
+    const user = await User.create({ username, password: hashedPassword, email });
     res.status(201).send({ message: "User created", user });
   } catch (error) {
     res.status(500).send({ message: "Error creating user", error });

@@ -1,56 +1,24 @@
-const fs = require("fs");
-const path = require("path");
-const Sequelize = require("sequelize");
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/config/config.json")[env];
-const express = require("express");
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
-const contactRouter = require("./routes/contact");
+const port = 8080;
 
-const db = {};
+// Configuração de CORS
+app.use(cors());
 
-app.use(express.json()); // Middleware to parse JSON
-app.use("/contact", contactRouter); // Mount the contact router
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-const PORT = 8080;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+const db = require('./models');
+db.sequelize.sync();
+
+app.get('/', (req, res) => {
+  res.json({ message: 'Bem-vindo ao backend!' });
 });
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config,
-  );
-}
+require('./routes/authRoutes')(app);
 
-fs.readdirSync(__dirname)
-  .filter((file) => {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach((file) => {
-    const model = require(path.join(__dirname, file))(
-      sequelize,
-      Sequelize.DataTypes,
-    );
-    db[model.name] = model;
-  });
-
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}.`);
 });
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
-module.exports = db;

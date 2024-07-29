@@ -1,7 +1,7 @@
 module.exports = {
     HOST: "mysql",
     USER: "root",
-    PASSWORD: "password",
+    PASSWORD: "admin",
     DB: "coopers_db",
     dialect: "mysql"
   };

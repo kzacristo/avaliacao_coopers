@@ -9,6 +9,9 @@ CREATE TABLE users (
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+-- add user admin
+INSERT INTO users (username, email, password) VALUE('admin', 'admin@gmail.com', '1234');
+
 -- Create Todos table
 CREATE TABLE todos (
   id INT AUTO_INCREMENT PRIMARY KEY,
