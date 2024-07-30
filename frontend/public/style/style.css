@@ -55,3 +55,17 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+#div-home-primaria {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: skyblue;
+}
+
+#div-home-secudaria {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgb(232, 235, 235);
+}

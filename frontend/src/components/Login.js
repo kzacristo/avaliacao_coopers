@@ -30,4 +30,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+render(Login);
