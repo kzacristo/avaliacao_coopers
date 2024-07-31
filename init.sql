@@ -1,4 +1,10 @@
--- init.sql
+-- drop if exists
+DROP TABLE IF EXISTS `todos`;
+DROP TABLE IF EXISTS `users`;
+DROP TRIGGER IF EXISTS `before_user_update`;
+DROP TRIGGER IF EXISTS `before_todo_update`;
+
+- init.sql
 -- Create Users table
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,

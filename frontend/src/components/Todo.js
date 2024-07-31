@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { createTodo } from '../services/todoService';
+import { addTodo } from '../services/todoService';
 
 const Todo = () => {
   const [newTodo, setNewTodo] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createTodo({
+    await addTodo({
       description: newTodo,
     });
     setNewTodo('');

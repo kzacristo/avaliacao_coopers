@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import todoService from '../services/todoService';
+import { getTodos } from '../services/todoService';
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const response = await todoService.getTodos();
+      const response = await getTodos();
       setTodos(response.data);
     };
 

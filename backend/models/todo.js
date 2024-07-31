@@ -1,6 +1,13 @@
-export default (sequelize, DataTypes) => {
-  const Todo = sequelize.define("Todo", {
-    text: {
+const { DataTypes } = require('sequelize');
+
+module.exports = (sequelize) => {
+  const Todo = sequelize.define('Todo', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -10,15 +17,21 @@ export default (sequelize, DataTypes) => {
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      references: {
+        model: 'Users',
+        key: 'id',
+      },
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
     },
   });
 
   Todo.associate = (models) => {
     Todo.belongsTo(models.User, {
-      foreignkey: "userId",
-      onDelete: "CASCADE",
+      foreignKey: 'userId',
+      as: 'user',
     });
   };
+
   return Todo;
 };
