@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors'); // Adicione esta linha
 const db = require('./models');
 const authRoutes = require('./routes/auth');
-const todoRoutes = require('./routes/todos');
+const todoRoutes = require('./routes/todo');
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Rotas
 app.use('/api/auth', authRoutes);
-app.use('/api/todos', todoRoutes);
+app.use('/api/', todoRoutes);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

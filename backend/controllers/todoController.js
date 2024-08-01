@@ -1,7 +1,6 @@
-import { Todo as _Todo } from "../models";
-const Todo = _Todo;
+const { Todo } = require("../models/todo")
 
-export async function createTodo(req, res) {
+ async function createTodo(req, res) {
   const { text } = req.body;
 
   try {
@@ -12,7 +11,7 @@ export async function createTodo(req, res) {
   }
 }
 
-export async function getTodos(req, res) {
+ async function getTodos(req, res) {
   try {
     const todos = await Todo.findall({ where: { userId: res.userId } });
     res.status(200).send(todos);
@@ -21,7 +20,7 @@ export async function getTodos(req, res) {
   }
 }
 
-export async function updateTodo(req, res) {
+ async function updateTodo(req, res) {
   const { id } = req.params;
   const { text, completed } = req.body;
 
@@ -33,7 +32,7 @@ export async function updateTodo(req, res) {
   }
 }
 
-export async function deleteTodo(req, res) {
+ async function deleteTodo(req, res) {
   const { id } = req.params;
 
   try {
@@ -45,4 +44,11 @@ export async function deleteTodo(req, res) {
   } catch (error) {
     res.status(500).send({ message: "Error deleting to-do", error });
   }
+}
+
+module.exports = {
+  createTodo,
+  getTodos,
+  updateTodo,
+  deleteTodo
 }

@@ -2,15 +2,14 @@ services:
   
   mysql:
     image: mysql:5.7
-    restart: always
+    restart: on-failure
     ports:
       - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: coopers_db
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-  
+      - ./db.sql
   backend:
     build: ./backend
     ports:
@@ -20,6 +19,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=admin
       - DB_NAME=coopers_db
+    restart: on-failure
     depends_on:
       - mysql
     env_file:

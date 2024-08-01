@@ -5,13 +5,13 @@ const {
   updateTodo,
   deleteTodo,
 } = require("../controllers/todoController");
-const authenticate = require("../middleware/authenticate");
+// const authenticate = require("../middleware/authenticate");
 const router = express.Router();
 
-router.use(authenticate);
+// router.use(authenticate);
 
-router.post("/", createTodo);
-router.ger("/", getTodos);
+router.post("/addtodo", createTodo);
+router.get("/todo", getTodos);
 router.put("/:id", updateTodo);
 router.delete("/:id", deleteTodo);
 
