@@ -92,3 +92,21 @@
     transform: rotate(360deg);
   }
 }
+
+#button-login{
+  position: absolute;
+  left: 80px;
+  right: 1060px;
+  top: 463px;
+  bottom: 3327px;
+  color: rgb(30, 236, 30);
+}
+
+#button-to-do {
+  position: absolute;
+  left: 80px;
+  right: 1060px;
+  top: 463px;
+  bottom: 3327px;
+  color: rgb(0, 0, 0);
+}

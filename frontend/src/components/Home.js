@@ -2,17 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-const Home = () =>{
+const Home = () => {
   return (
     <div>
-      <h1>Página Inicial</h1>
       <nav>
         <ul>
           <li>
-            <Link to="/login">Login</Link>
+            <button id='button-login'>
+              <Link to="/login">Login</Link>
+            </button>
           </li>
+          <h1>Organize
+            <p>your daily jobs</p>
+          </h1>
           <li>
-            <Link to="/todo">To-do</Link>
+            <button id='button-to-do'>
+              <Link to="/todo">Get to To-do list</Link>
+            </button>
           </li>
         </ul>
       </nav>
