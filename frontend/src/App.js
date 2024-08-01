@@ -6,11 +6,11 @@ import Register from './components/Register';
 import Todo from './components/Todo';
 import ContactForm from './components/ContactForm';
 
-const App = () => {
+export default function App (){
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/todo" element={<Todo />} />
@@ -18,6 +18,9 @@ const App = () => {
       </Routes>
     </Router>
   );
-};
+}
 
-export default App;
+// const App = () => {
+// };
+
+// export default App;
