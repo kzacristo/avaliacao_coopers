@@ -11,7 +11,7 @@ const Todo = () => {
     });
     setNewTodo('');
   };
-
+console.log("aquii", handleSubmit)
   return (
     <div className="todo-container">
       <h2>Add Todo</h2>

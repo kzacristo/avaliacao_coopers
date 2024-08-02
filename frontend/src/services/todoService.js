@@ -9,6 +9,7 @@ const getTodos = async () => {
 
 const addTodo = async (todo) => {
   const response = await axios.post(`${API_URL}addtodo`, todo, { withCredentials: true });
+  console.log("todoService - ", response.data)
   return response.data;
 };
 

@@ -1,5 +1,5 @@
 const express = require("express");
-const { register, login } = require("../controllers/userController");
+const { login, register } = require("../controllers/userController");
 const router = express.Router();
 
 const API_URL = 'http://localhost:8080/api/auth/';

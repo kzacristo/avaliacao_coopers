@@ -1,11 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../models/user'); 
+const bcrypt = require('bcrypt');
 
-// Supondo que você tenha algumas rotas de autenticação aqui
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-    // Lógica de autenticação aqui
+
+    const user = await User.findOne({ where: { username } });
+
+    if(!user){
+      return res.status(401).send({ message: 'Nome de usuário ou senha incorretas'});
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if(!isPasswordValid){
+      return res.status(401).send({ message: 'Nome de usuário ou senha incorretas'});
+    }
+
     res.status(200).send({ message: 'Login bem-sucedido' });
   } catch (error) {
     res.status(500).send({ message: 'Erro no servidor' });
